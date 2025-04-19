@@ -46,12 +46,20 @@ export const get = async <T>(endpoint: string): Promise<T> => {
 };
 
 // Méthode POST générique
-export const post = async <T>(endpoint: string, data: any): Promise<T> => {
+export const post = async <T>(endpoint: string, data: any, isFormData: boolean = false): Promise<T> => {
   try {
+    // Préparer les en-têtes selon le type de contenu
+    const requestHeaders = { ...headers };
+    
+    if (isFormData) {
+      // Ne pas inclure Content-Type pour FormData, le navigateur le gèrera
+      delete requestHeaders['Content-Type'];
+    }
+    
     const response = await fetch(`${API_BASE_URL}${endpoint}`, {
       method: 'POST',
-      headers,
-      body: JSON.stringify(data)
+      headers: requestHeaders,
+      body: isFormData ? data : JSON.stringify(data)
     });
     
     if (!response.ok) {
@@ -66,12 +74,20 @@ export const post = async <T>(endpoint: string, data: any): Promise<T> => {
 };
 
 // Méthode PUT générique
-export const put = async <T>(endpoint: string, data: any): Promise<T> => {
+export const put = async <T>(endpoint: string, data: any, isFormData: boolean = false): Promise<T> => {
   try {
+    // Préparer les en-têtes selon le type de contenu
+    const requestHeaders = { ...headers };
+    
+    if (isFormData) {
+      // Ne pas inclure Content-Type pour FormData, le navigateur le gèrera
+      delete requestHeaders['Content-Type'];
+    }
+    
     const response = await fetch(`${API_BASE_URL}${endpoint}`, {
       method: 'PUT',
-      headers,
-      body: JSON.stringify(data)
+      headers: requestHeaders,
+      body: isFormData ? data : JSON.stringify(data)
     });
     
     if (!response.ok) {
