@@ -2,6 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700&display=swap');
+
+@layer base {
+  body {
+    font-family: 'Inter', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+  }
+}
+
+.rbc-calendar {
+  width: 100%;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.rbc-header {
+  padding: 10px 0;
+  font-weight: 600;
+  background-color: theme('colors.medical.light');
+}
+
+.rbc-today {
+  background-color: rgba(59, 130, 246, 0.1);
+}
+
+.rbc-event {
+  background-color: theme('colors.medical.blue');
+  border-radius: 4px;
+}
+
+.rbc-event.rbc-selected {
+  background-color: theme('colors.medical.dark');
+}
+
+.rbc-day-slot .rbc-event {
+  border: none;
+}
+
+.rbc-time-view-resources .rbc-time-gutter,
+.rbc-time-view-resources .rbc-time-header-gutter {
+  background-color: theme('colors.gray.50');
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
