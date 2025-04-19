@@ -104,5 +104,11 @@ export const del = async <T>(endpoint: string): Promise<T> => {
   }
 };
 
+// Initialize auth token from localStorage on load
+const storedToken = localStorage.getItem('auth_token');
+if (storedToken) {
+  setAuthToken(storedToken);
+}
+
 const api = { get, post, put, del, setAuthToken };
 export default api;

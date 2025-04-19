@@ -8,6 +8,11 @@ export const useDoctors = (specialtyId?: number) => {
   return useQuery<Doctor[]>({
     queryKey: ['doctors', { specialtyId }],
     queryFn: async () => {
+      // Construct endpoint with specialty filter if provided
+      const endpoint = specialtyId 
+        ? `/doctors?specialty=${specialtyId}` 
+        : '/doctors';
+      
       // En environnement de production, utiliser l'API réelle
       // return await api.get<Doctor[]>(endpoint);
       

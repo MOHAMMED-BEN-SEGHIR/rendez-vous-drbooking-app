@@ -8,6 +8,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Layout from "./components/Layout";
 import Index from "./pages/Index";
 import AppointmentsPage from "./pages/AppointmentsPage";
+import DoctorsListPage from "./pages/DoctorsListPage";
+import LoginPage from "./pages/LoginPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient({
@@ -30,8 +32,10 @@ const App = () => (
             <Route element={<Layout />}>
               <Route path="/" element={<Index />} />
               <Route path="/appointments" element={<AppointmentsPage />} />
+              <Route path="/doctors" element={<DoctorsListPage />} />
               {/* Routes supplémentaires à ajouter ici */}
             </Route>
+            <Route path="/login" element={<LoginPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
