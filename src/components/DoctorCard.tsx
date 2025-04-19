@@ -18,13 +18,16 @@ const DoctorCard = ({ doctor, onViewMore }: DoctorCardProps) => {
     setIsFavorite(prev => !prev);
   };
   
+  // Calculer le nom complet si 'name' n'est pas disponible
+  const doctorName = doctor.name || `${doctor.firstName} ${doctor.lastName}`;
+  
   return (
     <Card className="overflow-hidden transition-all duration-300 hover:shadow-md">
       {/* Doctor Image */}
       <div className="relative">
         <img 
           src={doctor.imageUrl || "https://via.placeholder.com/400x300?text=Doctor"} 
-          alt={doctor.name}
+          alt={doctorName}
           className="w-full h-64 object-cover"
         />
         <button 
@@ -38,23 +41,23 @@ const DoctorCard = ({ doctor, onViewMore }: DoctorCardProps) => {
       </div>
       
       <CardContent className="pt-5">
-        <h3 className="text-xl font-semibold text-gray-800">{doctor.name}</h3>
+        <h3 className="text-xl font-semibold text-gray-800">{doctorName}</h3>
         
         <div className="mt-2 flex items-center">
           {Array.from({ length: 5 }).map((_, index) => (
             <Star 
               key={index} 
-              className={`h-4 w-4 ${index < doctor.rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'}`} 
+              className={`h-4 w-4 ${index < (doctor.rating || 0) ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'}`} 
             />
           ))}
-          <span className="ml-2 text-sm text-gray-600">({doctor.reviewCount})</span>
+          <span className="ml-2 text-sm text-gray-600">({doctor.reviewCount || 0})</span>
         </div>
         
         <p className="mt-2 text-medical-teal font-medium">{doctor.specialty?.name}</p>
         
         <div className="mt-3 flex items-center text-gray-600">
           <MapPin className="h-4 w-4 mr-1" />
-          <span className="text-sm">{doctor.location}</span>
+          <span className="text-sm">{doctor.location || 'Location not specified'}</span>
         </div>
       </CardContent>
       

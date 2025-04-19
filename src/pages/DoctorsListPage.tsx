@@ -32,8 +32,8 @@ const DoctorsListPage = () => {
   // Filter doctors based on gender and availability if needed
   const filteredDoctors = doctors?.filter(doctor => {
     if (filters.gender && doctor.gender !== filters.gender) return false;
-    if (filters.availability === 'free' && !doctor.hasAvailability) return false;
-    if (filters.availability === 'unavailable' && doctor.hasAvailability) return false;
+    if (filters.availability === 'free' && doctor.hasAvailability === false) return false;
+    if (filters.availability === 'unavailable' && doctor.hasAvailability === true) return false;
     return true;
   });
 

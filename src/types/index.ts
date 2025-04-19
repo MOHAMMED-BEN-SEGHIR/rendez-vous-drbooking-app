@@ -7,6 +7,13 @@ export interface Doctor {
   specialtyId: number;
   specialty: Specialty;
   imageUrl?: string;
+  // Propriétés additionnelles nécessaires
+  name?: string; // Pour la rétrocompatibilité
+  rating?: number;
+  reviewCount?: number;
+  location?: string;
+  gender?: 'male' | 'female';
+  hasAvailability?: boolean;
 }
 
 // Types pour les spécialités

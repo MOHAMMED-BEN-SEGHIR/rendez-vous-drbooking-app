@@ -18,6 +18,11 @@ const loginSchema = z.object({
 
 type LoginFormValues = z.infer<typeof loginSchema>;
 
+// Définir le type de la réponse attendue
+interface LoginResponse {
+  token: string;
+}
+
 const LoginPage = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
@@ -34,8 +39,13 @@ const LoginPage = () => {
     setIsLoading(true);
     
     try {
-      // Appel à l'API pour la connexion
-      const response = await api.post('/login_check', data);
+      // Appel à l'API pour la connexion avec typage correct
+      const response = await api.post<LoginResponse>('/login_check', data);
+      
+      // Vérifie si la réponse contient un token
+      if (!response || !response.token) {
+        throw new Error('No token received from server');
+      }
       
       // Stockage du token JWT
       localStorage.setItem('auth_token', response.token);
