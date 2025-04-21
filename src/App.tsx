@@ -13,6 +13,7 @@ import DoctorDetailPage from "./pages/DoctorDetailPage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import NotFound from "./pages/NotFound";
+import HomePage from "./pages/HomePage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -32,11 +33,11 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route element={<Layout />}>
-              <Route path="/" element={<Index />} />
+              {/* Home page */}
+              <Route path="/" element={<HomePage />} />
               <Route path="/appointments" element={<AppointmentsPage />} />
               <Route path="/doctors" element={<DoctorsListPage />} />
               <Route path="/doctors/:id" element={<DoctorDetailPage />} />
-              {/* Routes supplémentaires à ajouter ici */}
             </Route>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignupPage />} />
