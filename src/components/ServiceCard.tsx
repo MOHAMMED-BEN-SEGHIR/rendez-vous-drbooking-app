@@ -1,8 +1,9 @@
 
 import { FC } from "react";
+import { LucideIcon } from "lucide-react";
 
 interface ServiceCardProps {
-  Icon: FC<{ size?: number; className?: string }>;
+  Icon: LucideIcon;
   title: string;
   description: string;
 }
