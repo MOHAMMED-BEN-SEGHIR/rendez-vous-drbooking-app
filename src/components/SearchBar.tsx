@@ -8,7 +8,7 @@ const SearchBar = () => {
   const [topic, setTopic] = useState("");
   const [location, setLocation] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Ici on pourrait router vers la page /doctors avec query params
     // For now, just console.log
